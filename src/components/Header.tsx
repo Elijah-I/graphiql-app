@@ -1,12 +1,17 @@
 import * as React from "react";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { ROUTING } from "types/routing";
 
-const Logo = require("./../assets/icons/logo.png") as string;
+import { ROUTING } from "types/routing";
+import LangContext from "context/lang";
+import useLanguage from "hooks/useLanguage";
+
+const Logo = require("../assets/icons/logo.png") as string;
 
 const Header = () => {
+  const { language, toggleLanguage } = React.useContext(LangContext);
   const [isSticky, setIsSticky] = React.useState(false);
+  const locale = useLanguage("header");
 
   React.useEffect(() => {
     const listener = () => {
@@ -58,8 +63,16 @@ const Header = () => {
           </Link>
 
           <Link to={ROUTING.AUTH}>
-            <Button variant="contained">Sign In / Sign Up</Button>
+            <Button variant="contained">{locale?.auth}</Button>
           </Link>
+
+          <Button
+            sx={{ ml: 3 }}
+            variant="contained"
+            onClick={toggleLanguage}
+          >
+            {language.toUpperCase()}
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
