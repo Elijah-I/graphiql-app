@@ -9,6 +9,7 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { ROUTING } from "types/routing";
+import LangContext from "context/lang";
 
 import { Auth, Error, Graphiql, Main } from "pages";
 import Layout from "layout/Layout";
@@ -42,10 +43,23 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
+  const [lang, setLang] = React.useState(localStorage.getItem("lang") || "ru");
+
+  const toggleLang = () => {
+    const newLang = lang === "ru" ? "en" : "ru";
+
+    setLang(newLang);
+    localStorage.setItem("lang", newLang);
+  };
+
   return (
     <>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <LangContext.Provider
+        value={{ language: lang, toggleLanguage: toggleLang }}
+      >
+        <RouterProvider router={router} />
+      </LangContext.Provider>
     </>
   );
 };
