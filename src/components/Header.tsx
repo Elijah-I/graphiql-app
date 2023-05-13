@@ -1,5 +1,7 @@
 import * as React from "react";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { ROUTING } from "types/routing";
 
 const Logo = require("./../assets/icons/logo.png") as string;
 
@@ -31,22 +33,33 @@ const Header = () => {
         }}
       >
         <Toolbar>
-          <img
-            src={Logo}
+          <Link
+            to={ROUTING.MAIN}
             style={{
-              width: isSticky ? "40px" : "50px",
-              marginRight: "10px",
-              transition: "all 0.2s ease"
+              flexGrow: 1,
+              display: "flex",
+              gap: "10px",
+              alignItems: "center"
             }}
-          />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
           >
-            GraphiQL
-          </Typography>
-          <Button color="inherit">Login</Button>
+            <img
+              src={Logo}
+              style={{
+                width: isSticky ? "40px" : "50px",
+                transition: "all 0.2s ease"
+              }}
+            />
+            <Typography
+              variant="h6"
+              component="div"
+            >
+              GraphiQL
+            </Typography>
+          </Link>
+
+          <Link to={ROUTING.AUTH}>
+            <Button variant="contained">Sign In / Sign Up</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
