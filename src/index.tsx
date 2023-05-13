@@ -13,6 +13,8 @@ import { ROUTING } from "types/routing";
 import { Auth, Error, Graphiql, Main } from "pages";
 import Layout from "layout/Layout";
 
+import "./index.scss";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
