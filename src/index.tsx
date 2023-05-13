@@ -1,10 +1,19 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Typography } from "@mui/material";
+
+const App = () => {
+  return (
+    <>
+      <CssBaseline />
+      <Typography variant="h5">hello</Typography>
+    </>
+  );
+};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <h1>hello</h1>
-  </React.StrictMode>
+  <App />
 );
 
 if (process.env.NODE_ENV === "development" && module && module.hot)
