@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  AppBar,
-  Box,
-  Button,
-  SvgIcon,
-  Toolbar,
-  Typography
-} from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
 const Logo = require("./../assets/icons/logo.png") as string;
 
@@ -56,7 +49,6 @@ const Header = () => {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <div style={{ marginBottom: "2000px" }}></div>
     </Box>
   );
 };
