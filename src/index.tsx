@@ -10,11 +10,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
+import UserContext from "context/user";
+
+import { User } from "UserServices/UserService";
 
 import { Auth, Error, Graphiql, Main } from "pages";
 import Layout from "layout/Layout";
 
 import "./index.scss";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +48,7 @@ const router = createBrowserRouter(
 
 const App = () => {
   const [lang, setLang] = React.useState(localStorage.getItem("lang") || "ru");
+  const [user, setUser] = React.useState(localStorage.getItem('activeUser') ?? '')
 
   const toggleLang = () => {
     const newLang = lang === "ru" ? "en" : "ru";
@@ -52,13 +57,22 @@ const App = () => {
     localStorage.setItem("lang", newLang);
   };
 
+  const changeUser = () => {
+    const activeUser = User.getActive()
+    setUser(activeUser);
+  }
+
   return (
     <>
       <CssBaseline />
       <LangContext.Provider
         value={{ language: lang, toggleLanguage: toggleLang }}
       >
-        <RouterProvider router={router} />
+        <UserContext.Provider
+          value={{ user: user, changeUser: changeUser }}
+        >
+          <RouterProvider router={router} />
+        </UserContext.Provider>
       </LangContext.Provider>
     </>
   );

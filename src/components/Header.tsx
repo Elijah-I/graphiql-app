@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
+import UserContext from "context/user";
+
 import useLanguage from "hooks/useLanguage";
+import { User } from "UserServices/UserService";
 
 const Logo = require("../assets/icons/logo.png") as string;
 
 const Header = () => {
   const { language, toggleLanguage } = React.useContext(LangContext);
+  const { user, changeUser } = React.useContext(UserContext);
   const [isSticky, setIsSticky] = React.useState(false);
   const locale = useLanguage("header");
 
@@ -25,6 +29,11 @@ const Header = () => {
     return () => removeEventListener("scroll", listener);
   }, [isSticky]);
 
+  const logoutHandler = () => {
+    User.logout()
+    changeUser()
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -38,8 +47,7 @@ const Header = () => {
         }}
       >
         <Toolbar>
-          <Link
-            to={ROUTING.MAIN}
+          <div
             style={{
               flexGrow: 1,
               display: "flex",
@@ -60,11 +68,23 @@ const Header = () => {
             >
               GraphiQL
             </Typography>
-          </Link>
+          </div>
+
+          {user
+            ? <Link to={ROUTING.MAIN}>
+              <Button variant="contained">{locale?.main}</Button>
+            </Link>
+
+            : <Link to={ROUTING.AUTH}>
+              <Button variant="contained">{locale?.auth}</Button>
+            </Link>
+
+          }
 
           <Link to={ROUTING.AUTH}>
-            <Button variant="contained">{locale?.auth}</Button>
+            <Button variant="contained" disabled={!user} onClick={logoutHandler}>{locale?.logout}</Button>
           </Link>
+
 
           <Button
             sx={{ ml: 3 }}
