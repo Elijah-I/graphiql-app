@@ -5,7 +5,7 @@ import { Input } from "components/AuthForm/Input";
 import { checkIsEmailValid } from "./validation";
 import { User } from "UserServices/UserService";
 import UserContext from "context/user";
-
+import './style.scss'
 interface AuthFormProps {
   locale: Locale
 }

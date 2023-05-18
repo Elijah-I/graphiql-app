@@ -10,7 +10,9 @@ interface InputProps {
 
 export const Input = ({ type, name, placeholder, value, onChange }: InputProps) => {
     return (<>
-        <input type={type}
+        <input
+            className='auth__input'
+            type={type}
             name={name}
             placeholder={placeholder}
             value={value}
