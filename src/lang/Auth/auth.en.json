@@ -1,0 +1,9 @@
+{
+    "page-title": "Auth",
+    "email-placeholder": "Enter your email",
+    "password-placeholder": "Enter your password",
+    "login": "Log In",
+    "register": "Register",
+    "invalid-value": "Invalid email or password",
+    "user-registred": "This user is already registered"
+}

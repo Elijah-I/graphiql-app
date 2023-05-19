@@ -2,7 +2,7 @@ import * as React from "react";
 
 import LangContext from "context/lang";
 
-type Locale = Record<string, string>;
+export type Locale = Record<string, string>;
 
 const useLanguage = (file: string): Locale => {
   const { language } = React.useContext(LangContext);
