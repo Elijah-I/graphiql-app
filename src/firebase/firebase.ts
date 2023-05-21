@@ -25,6 +25,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+let expiratiionTime: number = Infinity;
+const checkToken = () => {
+  const now = Date.now();
+  return now < expiratiionTime;
+}
 
 auth.currentUser?.getIdTokenResult
 
@@ -34,7 +39,8 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
         throw new Error();
       }
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('login', auth.currentUser)
+      expiratiionTime = Date.parse((await auth.currentUser!.getIdTokenResult()).expirationTime);
+      console.log('login', )
     } catch (err) {
       console.error(err);
       if(err instanceof Error) {
@@ -48,12 +54,14 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
+      expiratiionTime = Date.parse((await user!.getIdTokenResult()).expirationTime);
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name,
         authProvider: "local",
         email,
       });
+
     } catch (err) {
       console.error(err);
       if(err instanceof Error) {
@@ -73,6 +81,7 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
   };
 
   const logout = () => {
+    expiratiionTime = Infinity;
     signOut(auth);
     console.log('logout')
   };
@@ -80,6 +89,7 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
   export {
     auth,
     db,
+    checkToken,
     signInWithEmailAndPassword,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,

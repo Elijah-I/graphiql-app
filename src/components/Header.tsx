@@ -67,14 +67,25 @@ const Header = () => {
           {
             user 
             ? 
-            <Link onClick={() => {logout()}} to={ROUTING.MAIN}>
-              <Button 
-                variant="contained">{locale.logout}</Button>
-            </Link>
+            <>
+              <Link onClick={() => {logout()}} to={ROUTING.MAIN}>
+                <Button 
+                  variant="contained">{locale.logout}</Button>
+              </Link>
+              <Link to={ROUTING.MAIN}>
+                <Button 
+                  variant="contained">{locale.backtomain}</Button>
+              </Link>
+            </>
             :
-            <Link to={ROUTING.LOGIN}>
-              <Button variant="contained">{locale.login}</Button>
-            </Link>
+            <>            
+              <Link to={ROUTING.LOGIN}>
+                <Button variant="contained">{locale.login}</Button>
+              </Link>
+              <Link to={ROUTING.REGISTER}>
+                <Button variant="contained">{locale.register}</Button>
+              </Link>
+            </>
           }    
           <Button
             sx={{ ml: 3 }}

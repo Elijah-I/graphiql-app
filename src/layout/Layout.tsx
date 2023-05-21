@@ -5,11 +5,25 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import { Box } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "firebase/firebase";
+import { auth, logout } from "firebase/firebase";
 import { Loading } from "pages";
+import { checkToken } from "firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Layout = () => {
+  const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if(!checkToken()) {
+        console.log("expired token")
+        logout();
+        navigate('/');
+      }
+
+    }, 1000);
+    return () => clearInterval(interval);
+  });
   return (
     <>
       {

@@ -1,4 +1,6 @@
 {
-  "login": "Sign In / Sign Up",
-  "logout": "Log out"
+  "login": "Sign In",
+  "register": "Sign Up",
+  "logout": "Log out",
+  "backtomain": "Go to Main Page"
 }
