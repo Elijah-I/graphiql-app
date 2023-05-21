@@ -6,7 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import "./Login.scss";
 
 function Login() {
-  const { register, handleSubmit, formState: { errors, isValid }, } = useForm();
+  const { register, handleSubmit, formState: { errors, isValid }, } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -53,14 +53,8 @@ function Login() {
         >
           Login
         </button>
-        <button className="login__btn login__google">
-          Login with Google
-        </button>
         <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          Don't have an account? <Link style={{color: "blue"}}to="/register">Register</Link> now.
         </div>
       </div>
     </div>

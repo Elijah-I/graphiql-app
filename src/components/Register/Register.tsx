@@ -8,7 +8,7 @@ import {
 import "./Register.scss";
 import { FieldValues, useForm } from "react-hook-form";
 function Register() {
-  const { register, handleSubmit, formState: { errors, isValid }, } = useForm();
+  const { register, handleSubmit, formState: { errors, isValid }, } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
   const [user, loading, error] = useAuthState(auth);
   async function onSubmit(data: FieldValues) {
     try {
@@ -57,13 +57,8 @@ function Register() {
         <button className="register__btn" type='submit'>
           Register
         </button>
-        <button
-          className="register__btn register__google"
-        >
-          Register with Google
-        </button>
         <div>
-          Already have an account? <Link to="/login">Login</Link> now.
+          Already have an account? <Link style={{color: "blue"}} to="/login">Login</Link> now.
         </div>
       </div>
     </div>
