@@ -30,6 +30,9 @@ auth.currentUser?.getIdTokenResult
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
     try {
+      if(auth.currentUser) {
+        throw new Error();
+      }
       await signInWithEmailAndPassword(auth, email, password);
       console.log('login', auth.currentUser)
     } catch (err) {
@@ -37,6 +40,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
       if(err instanceof Error) {
         alert(err.message);
       }
+      throw new Error();
     }
 };
 
@@ -70,6 +74,7 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
 
   const logout = () => {
     signOut(auth);
+    console.log('logout')
   };
 
   export {

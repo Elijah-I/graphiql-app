@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
 import useLanguage from "hooks/useLanguage";
+import { logout } from "../firebase/firebase";
 
 const Logo = require("../assets/icons/logo.png") as string;
 
@@ -15,7 +16,6 @@ const Header = () => {
   const [isSticky, setIsSticky] = React.useState(false);
   const [user, loading, error] = useAuthState(auth);
   const locale = useLanguage("header");
-
   React.useEffect(() => {
     const listener = () => {
       const top = window.scrollY;
@@ -67,8 +67,9 @@ const Header = () => {
           {
             user 
             ? 
-            <Link to={ROUTING.LOGIN}>
-            <Button variant="contained">{locale.logout}</Button>
+            <Link onClick={() => {logout()}} to={ROUTING.MAIN}>
+              <Button 
+                variant="contained">{locale.logout}</Button>
             </Link>
             :
             <Link to={ROUTING.LOGIN}>

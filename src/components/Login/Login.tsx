@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -9,12 +9,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
+  useLayoutEffect(() => {
+    console.log(loading, user)
+    if (!loading && user) {
+      navigate('/')
       return;
     }
-    /*if (user) navigate("/dashboard");*/
   }, [user, loading]);
   return (
     <div className="login">
@@ -35,7 +35,14 @@ function Login() {
         />
         <button
           className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={async () => { 
+            try {
+              await logInWithEmailAndPassword(email, password);
+              navigate('/');
+            } catch {
+
+            }
+          }}
         >
           Login
         </button>
