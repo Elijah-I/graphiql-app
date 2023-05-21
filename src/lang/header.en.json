@@ -1,3 +1,4 @@
 {
-  "auth": "Sign In / Sign Up"
+  "login": "Sign In / Sign Up",
+  "logout": "Log out"
 }

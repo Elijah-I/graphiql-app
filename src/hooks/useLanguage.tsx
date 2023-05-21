@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import LangContext from "context/lang";
 
@@ -10,7 +10,7 @@ const useLanguage = (file: string): Locale => {
 
   React.useEffect(() => {
     const getLocale = async () => {
-      const locale = await require(`./../lang/${file}.${language}.json`);
+      const locale = require(`./../lang/${file}.${language}.json`);
       setlocale(locale);
     };
 

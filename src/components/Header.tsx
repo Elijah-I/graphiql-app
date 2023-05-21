@@ -1,6 +1,8 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { auth } from "../firebase/firebase";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
@@ -11,6 +13,7 @@ const Logo = require("../assets/icons/logo.png") as string;
 const Header = () => {
   const { language, toggleLanguage } = React.useContext(LangContext);
   const [isSticky, setIsSticky] = React.useState(false);
+  const [user, loading, error] = useAuthState(auth);
   const locale = useLanguage("header");
 
   React.useEffect(() => {
@@ -61,11 +64,17 @@ const Header = () => {
               GraphiQL
             </Typography>
           </Link>
-
-          <Link to={ROUTING.LOGIN}>
-            <Button variant="contained">{locale?.auth}</Button>
-          </Link>
-
+          {
+            user 
+            ? 
+            <Link to={ROUTING.LOGIN}>
+            <Button variant="contained">{locale.logout}</Button>
+            </Link>
+            :
+            <Link to={ROUTING.LOGIN}>
+              <Button variant="contained">{locale.login}</Button>
+            </Link>
+          }    
           <Button
             sx={{ ml: 3 }}
             variant="contained"

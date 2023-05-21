@@ -55,7 +55,6 @@ const App = () => {
     setLang(newLang);
     localStorage.setItem("lang", newLang);
   };
-
   return (
     <>
       <CssBaseline />
