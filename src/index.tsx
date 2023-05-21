@@ -27,12 +27,16 @@ const router = createBrowserRouter(
         element={<Main />}
       />
       <Route
-        path={ROUTING.AUTH}
-        element={<Auth />}
+        path={ROUTING.LOGIN}
+        element={<Auth type='login'/>}
       />
       <Route
         path={ROUTING.GRAPHIQL}
         element={<Graphiql />}
+      />
+      <Route
+        path={ROUTING.REGISTER}
+        element={<Auth type='register'/>}
       />
       <Route
         path="*"

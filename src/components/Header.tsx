@@ -62,7 +62,7 @@ const Header = () => {
             </Typography>
           </Link>
 
-          <Link to={ROUTING.AUTH}>
+          <Link to={ROUTING.LOGIN}>
             <Button variant="contained">{locale?.auth}</Button>
           </Link>
 

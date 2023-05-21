@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "target": "ES5",
     "outDir": "../build/",
+    "esModuleInterop": true,
     "removeComments": true,
     "sourceMap": true,
     "watch": true,
