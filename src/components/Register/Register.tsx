@@ -6,15 +6,20 @@ import {
   registerWithEmailAndPassword,
 } from "../../firebase/firebase";
 import "./Register.scss";
+import { FieldValues, useForm } from "react-hook-form";
 function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const { register, handleSubmit, formState: { errors, isValid }, } = useForm();
   const [user, loading, error] = useAuthState(auth);
-  const register = () => {
-    if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
-  };
+  async function onSubmit(data: FieldValues) {
+    try {
+      if(isValid) {
+        console.log("valid")
+      }
+      await registerWithEmailAndPassword(data.name, data.email, data.password);
+      navigate('/');
+    } catch {
+    }
+  }
   const navigate = useNavigate();
   useLayoutEffect(() => {
     console.log(loading, user)
@@ -24,30 +29,32 @@ function Register() {
     }
   }, [user, loading]);
   return (
+    <form onSubmit={handleSubmit(onSubmit)}>
     <div className="register">
       <div className="register__container">
         <input
           type="text"
           className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
+          {...register("name", { required: true, minLength: 8})}
         />
         <input
-          type="text"
+          type="email"
           className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
+          {...register("email", { required: true, minLength: 8})}
         />
         <input
           type="password"
           className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          {...register("password", {
+            required: true, 
+            minLength: 8, 
+            validate: (value: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(value)
+          })}
         />
-        <button className="register__btn" onClick={register}>
+        <button className="register__btn" type='submit'>
           Register
         </button>
         <button
@@ -60,6 +67,7 @@ function Register() {
         </div>
       </div>
     </div>
+    </form>
   );
 }
 export default Register;

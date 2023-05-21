@@ -31,6 +31,10 @@ const checkToken = () => {
   return now < expiratiionTime;
 }
 
+import { doc, deleteDoc } from "firebase/firestore";
+
+// deleteDoc(doc(db, "users"));
+
 auth.currentUser?.getIdTokenResult
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
