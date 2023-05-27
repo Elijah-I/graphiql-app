@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './QueryVariables.scss';
 
 interface IQueryVariables {
@@ -7,8 +7,9 @@ interface IQueryVariables {
 }
 
 function QueryVariables({ vars, setvar }: IQueryVariables) {
+    const [isClosed, setCloled] = useState(false);
     return (
-        <div className="queryvariables">
+        <div style={{'height': isClosed ? '70px' : '100%'}} className="queryvariables">
             <div className="queryvariables__header">
                 <h3 className='queryvariables__name'>Variables</h3>
                 <button 
@@ -20,8 +21,14 @@ function QueryVariables({ vars, setvar }: IQueryVariables) {
                 >
                     Add variable
                 </button>
+                <button 
+                    className='queryvariables__close'
+                    onClick={() => {setCloled(!isClosed)}}
+                >
+                    {isClosed ? 'Open' : 'Close'}
+                </button>
             </div>
-            <div className="queryvariables__main">
+            <div style={{'display': isClosed ? "none" : "flex"}} className="queryvariables__main">
                 {
                     vars.map((el, i) => (
                         <div key={i} className="queryvariable">

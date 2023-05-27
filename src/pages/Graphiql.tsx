@@ -20,10 +20,19 @@ const Graphiql = () => {
   }, [user, loading]);
 
   const [vars, setVariables] = useState<Array<[string, string]>>([["", ""]]);
+  const [heads, setHeaders] = useState<Array<[string, string]>>([["", ""]]);
   useEffect(() => {
     console.log(vars);
   }, [vars])
   useEffect(() => {
+    let headers = new Headers();
+    heads.forEach((el) => {
+      try{
+        headers.append(el[0], el[1])
+      } catch {
+        
+      }
+    })
     let variabs = {};
     vars.forEach((el) => { 
       variabs = {...variabs, [el[0]]: el[1]}
@@ -31,6 +40,7 @@ const Graphiql = () => {
     fetch('https://countries.trevorblades.com', {
       method: 'POST',
       headers: {
+        ...headers,
         'Content-type': 'application/json',
       },
       body: JSON.stringify({

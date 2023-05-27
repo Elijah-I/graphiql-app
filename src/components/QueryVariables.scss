@@ -6,6 +6,7 @@
     flex-direction: column;
     &__header {
         display: flex;
+        justify-content: space-around;
         align-items: center;
         border-bottom: 1px black solid;
     }
@@ -15,6 +16,10 @@
         text-align: center;
     }
     &__add {
+        height: 30px;
+    }
+
+    &__close {
         height: 30px;
     }
 }
