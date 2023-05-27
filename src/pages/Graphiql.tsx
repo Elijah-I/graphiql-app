@@ -30,7 +30,7 @@ const Graphiql = () => {
       try{
         headers.append(el[0], el[1])
       } catch {
-        
+
       }
     })
     let variabs = {};
@@ -60,7 +60,7 @@ const Graphiql = () => {
   return (
     <div className="queryElements">
       <QueryVariables vars={vars} setvar={setVariables}/>
-      <QueryHeaders />
+      <QueryHeaders vars={heads} setvar={setHeaders} />
       <QueryEditor />
       <QueryResponse />
     </div>

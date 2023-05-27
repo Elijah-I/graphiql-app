@@ -1,4 +1,4 @@
-.queryvariables {
+.queryheaders {
     display: flex;
     overflow-y: auto;
     border: 1px black solid;
@@ -29,7 +29,7 @@
     }
 }
 
-.queryvariable {
+.queryheader {
     display: flex;
     justify-content: space-around;
     width: 100%;
