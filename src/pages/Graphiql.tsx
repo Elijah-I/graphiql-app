@@ -21,10 +21,15 @@ const Graphiql = () => {
 
   const [vars, setVariables] = useState<Array<[string, string]>>([["", ""]]);
   const [heads, setHeaders] = useState<Array<[string, string]>>([["", ""]]);
-  useEffect(() => {
-    console.log(vars);
-  }, [vars])
-  useEffect(() => {
+  const [query, setQuery] = useState<string>(`
+  {
+    countries {
+      name
+      code
+    }
+  }`);
+  const [response, setResponse] = useState("");
+  function fetchquery() {
     let headers = new Headers();
     heads.forEach((el) => {
       try{
@@ -44,25 +49,22 @@ const Graphiql = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        query: `
-        {
-          countries {
-            name
-            code
-          }
-        }`,
+        query: query,
         variables: variabs
       })
     })
     .then(res => res.json())
-	  .then(res => console.log(res.data));
-  })
+	  .then(res => {
+      console.log(res.data);
+      setResponse(JSON.stringify(res.data, null, 2));
+    });
+  }
   return (
     <div className="queryElements">
       <QueryVariables vars={vars} setvar={setVariables}/>
       <QueryHeaders vars={heads} setvar={setHeaders} />
-      <QueryEditor />
-      <QueryResponse />
+      <QueryEditor fetchquery={fetchquery} query={query} setQuery={setQuery} />
+      <QueryResponse response={response}/>
     </div>
   );
 };
