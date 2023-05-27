@@ -42,7 +42,7 @@ const Header = () => {
       >
         <Toolbar>
           <Link
-            to={ROUTING.MAIN}
+            to={user ? ROUTING.GRAPHIQL : ROUTING.MAIN}
             style={{
               flexGrow: 1,
               display: "flex",
