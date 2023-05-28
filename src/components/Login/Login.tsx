@@ -5,6 +5,7 @@ import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import "./Login.scss";
+import useLanguage from "hooks/useLanguage";
 
 function Login() {
   const { register, handleSubmit, formState: { errors, isValid }, } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
@@ -12,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+  const locale = useLanguage("login");
   async function onSubmit(data: FieldValues) {
     try {
       console.log(data)
@@ -35,29 +37,29 @@ function Login() {
           {...register("email", { required: true, minLength: 8})}
           type="email"
           className="login__textBox"
-          placeholder="E-mail Address"
+          placeholder={locale.email}
         />
-        {errors.email && <span>minimum 8 symbols</span>}
+        {errors.email && <span>{locale.loginval}</span>}
         <input
           type="password"
           className="login__textBox"
-          placeholder="Password"
+          placeholder={locale.password}
           {...register("password", {
             required: true, 
             minLength: 8, 
             validate: (value: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(value)
           })}
         />
-        {errors.password && <span>minimum 8 symbols, at least one letter, one digit, one special character</span>}
+        {errors.password && <span>{locale.passwordval}</span>}
         <Button 
           variant="contained"
           type="submit"
           className="login__btn"
         >
-          Login
+          {locale.login}
         </Button>
         <div>
-          Don't have an account? <Link style={{color: "blue"}}to="/register">Register</Link> now.
+        {locale.acc} <Link style={{color: "blue"}}to="/register">{locale.reg}</Link> {locale.now}.
         </div>
       </div>
     </div>
