@@ -1,6 +1,11 @@
+$margin: 20px;
 .queryElements {
-    height: 80vh;
-    width: 100%;
+    font-size: calc(0.33vmax + 10px);
+    height: calc(80vh - 2 * $margin);
+    width: calc(100vw - 2 * $margin);
     display: grid;
-    grid-template: 30% 70% / 50% 50%;
+    grid-template: calc(30% - 2 * $margin) calc(70% - 2 * $margin) / calc(50% - 2 * $margin) calc(50% - 2 * $margin);
+    gap: $margin;
+    margin: $margin;
+    justify-items: center;
 }

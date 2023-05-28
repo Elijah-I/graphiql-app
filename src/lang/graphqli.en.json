@@ -7,5 +7,6 @@
     "addhead": "Add header",
     "query": "Query",
     "sendquery": "Send query",
-    "response": "Response"
+    "response": "Response",
+    "docs": "docs"
 }

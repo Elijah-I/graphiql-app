@@ -1,6 +1,7 @@
 import useLanguage from 'hooks/useLanguage';
 import { Button } from "@mui/material";
 import React from 'react';
+import './QueryEditor.scss';
 
 interface IQueryEditor {
     fetchquery: () => void;
@@ -10,16 +11,22 @@ interface IQueryEditor {
 function QueryEditor({fetchquery, query, setQuery}: IQueryEditor) {
     const locale = useLanguage('graphqli');
     return (
-        <div style={{'display': 'flex', 'flexDirection': 'column'}}>
-            <h3 style={{'height': '30px', 'textAlign': 'center'}}>{locale.query}</h3>
+        <div className="queryeditor">
+            <h3 className="queryeditor__name">{locale.query}</h3>
             <textarea 
                 value={query} 
                 onChange={(e) => {
                     setQuery(e.currentTarget.value);
                 }} 
-                style={{'width': '100%', 'height': '100%'}}
+                className="queryeditor__query"
             ></textarea>
-            <Button variant="contained" onClick={() => fetchquery()}>{locale.sendquery}</Button>
+            <Button 
+                variant="contained" 
+                className="queryeditor__button"
+                onClick={() => fetchquery()}
+            >
+                {locale.sendquery}
+            </Button>
         </div>
     );
 }

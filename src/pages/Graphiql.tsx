@@ -24,12 +24,23 @@ const Graphiql = () => {
   const [vars, setVariables] = useState<Array<[string, string]>>([["", ""]]);
   const [heads, setHeaders] = useState<Array<[string, string]>>([["", ""]]);
   const [query, setQuery] = useState<string>(`
-  {
-    countries {
-      name
-      code
+  query {
+    characters(page: 2, filter: { name: "rick" }) {
+      info {
+        count
+      }
+      results {
+        name
+      }
     }
-  }`);
+    location(id: 1) {
+      id
+    }
+    episodesByIds(ids: [1, 2]) {
+      id
+    }
+  }
+  `);
   const [response, setResponse] = useState("");
 
   function fetchquery() {
@@ -45,7 +56,7 @@ const Graphiql = () => {
     vars.forEach((el) => { 
       variabs = {...variabs, [el[0]]: el[1]}
     });
-    fetch('https://countries.trevorblades.com', {
+    fetch('https://rickandmortyapi.com/graphql', {
       method: 'POST',
       headers: {
         ...headers,

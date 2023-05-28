@@ -12,7 +12,7 @@ function QueryHeaders({ vars, setvar }: IQueryHeaders) {
     const locale = useLanguage('graphqli');
     const [isClosed, setCloled] = useState(false);
     return (
-        <div style={{'height': isClosed ? '70px' : '100%'}} className="queryheaders">
+        <div style={{height: isClosed ? '70px' : '100%', transition: "height 0.7s ease"}} className="queryheaders">
             <div className="queryheaders__header">
                 <h3 className='queryheaders__name'>{locale.heads}</h3>
                 <Button 
@@ -33,11 +33,12 @@ function QueryHeaders({ vars, setvar }: IQueryHeaders) {
                     {isClosed ? locale.open : locale.close}
                 </Button>
             </div>
-            <div style={{'display': isClosed ? "none" : "flex"}} className="queryheaders__main">
+            <div className="queryheaders__main">
                 {
                     vars.map((el, i) => (
                         <div key={i} className="queryheader">
                             <input 
+                                style={{'display': isClosed ? "none" : "flex"}}
                                 className='queryheader__name'
                                 type="text" 
                                 value={el[0]}
@@ -48,6 +49,7 @@ function QueryHeaders({ vars, setvar }: IQueryHeaders) {
                                 }}>    
                             </input>
                             <input 
+                                style={{'display': isClosed ? "none" : "flex"}}
                                 className='queryheader__value'
                                 type="text"
                                 value={el[1]}

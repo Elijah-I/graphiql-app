@@ -12,7 +12,7 @@ function QueryVariables({ vars, setvar }: IQueryVariables) {
     const locale = useLanguage('graphqli');
     const [isClosed, setCloled] = useState(false);
     return (
-        <section style={{'height': isClosed ? '70px' : '100%'}} className="queryvariables">
+        <section style={{height: isClosed ? '70px' : '100%', transition: "height 0.7s ease"}} className="queryvariables">
             <div className="queryvariables__header">
                 <h3 className='queryvariables__name'>{locale.vars}</h3>
                 <Button 
@@ -33,11 +33,12 @@ function QueryVariables({ vars, setvar }: IQueryVariables) {
                     {isClosed ? locale.open : locale.close}
                 </Button>
             </div>
-            <div style={{'display': isClosed ? "none" : "flex"}} className="queryvariables__main">
+            <div className="queryvariables__main">
                 {
                     vars.map((el, i) => (
                         <div key={i} className="queryvariable">
                             <input 
+                                style={{'display': isClosed ? "none" : "flex"}}
                                 className='queryvariable__name'
                                 type="text" 
                                 value={el[0]}
@@ -48,6 +49,7 @@ function QueryVariables({ vars, setvar }: IQueryVariables) {
                                 }}>    
                             </input>
                             <input 
+                                style={{'display': isClosed ? "none" : "flex"}}
                                 className='queryvariable__value'
                                 type="text"
                                 value={el[1]}

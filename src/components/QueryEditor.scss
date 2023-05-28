@@ -1,0 +1,21 @@
+.queryeditor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    &__name {
+        height: 30px;
+        text-align: center;
+    }
+    &__query {
+        width: 100%;
+        height: 100%;
+    }
+    &__button {
+        margin-top: 20px !important;
+        max-width: 150px;
+        font-size: 0.8em !important;
+        height: 40px;
+    }
+}

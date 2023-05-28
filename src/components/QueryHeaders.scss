@@ -2,6 +2,8 @@
     display: flex;
     overflow-y: auto;
     border: 1px black solid;
+    width: 100%;
+    max-width: 500px;
     border-radius: 5px;
     flex-direction: column;
     &__header {
@@ -16,11 +18,13 @@
         text-align: center;
     }
     &__add {
-        height: 30px;
+        font-size: 0.8em !important;
+        height: 40px;
     }
 
     &__close {
-        height: 30px;
+        font-size: 0.8em !important;
+        height: 40px;
     }
 
     &__main {

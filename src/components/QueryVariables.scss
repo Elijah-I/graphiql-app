@@ -1,6 +1,8 @@
 .queryvariables {
     display: flex;
     overflow-y: auto;
+    width: 100%;
+    max-width: 500px;
     border: 1px black solid;
     border-radius: 5px;
     flex-direction: column;
@@ -16,11 +18,13 @@
         text-align: center;
     }
     &__add {
-        height: 30px;
+        font-size: 0.8em !important;
+        height: 40px;
     }
 
     &__close {
-        height: 30px;
+        font-size: 0.8em !important;
+        height: 40px;
     }
 
     &__main {

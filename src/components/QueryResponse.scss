@@ -1,0 +1,15 @@
+.queryresponse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    &__name {
+        height: 30px;
+        text-align: center;
+    }
+    &__text {
+        width: 100%;
+        height: 100%;
+    }
+}
