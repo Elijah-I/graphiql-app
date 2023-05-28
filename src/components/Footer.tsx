@@ -46,6 +46,19 @@ const Footer = () => {
             />
           </a>
           <a
+            href="https://github.com/AntonSkalaban"
+            target="_blank"
+            style={{ opacity: 0.5, transition: "all 0.5s ease" }}
+          >
+            <img
+              src={Gh}
+              style={{
+                width: "20px",
+                marginRight: "30px"
+              }}
+            />
+          </a>
+          <a
             href="https://github.com/foxnorth228"
             target="_blank"
             style={{ opacity: 0.5, transition: "all 0.5s ease" }}

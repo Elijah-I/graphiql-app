@@ -3,7 +3,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { auth } from "../firebase/firebase";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import './Header.scss';
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
 import useLanguage from "hooks/useLanguage";
@@ -52,12 +52,14 @@ const Header = () => {
           >
             <img
               src={Logo}
+              className="header__graphqlilink"
               style={{
                 width: isSticky ? "40px" : "50px",
-                transition: "all 0.2s ease"
+                transition: "width 0.2s ease, transition: opacity 0.8s ease"
               }}
             />
             <Typography
+              className="header__graphqlilink"
               variant="h6"
               component="div"
             >
