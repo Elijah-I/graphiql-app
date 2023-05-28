@@ -1,0 +1,12 @@
+{
+    "name": "Name",
+    "email": "E-mail Address",
+    "password": "Password",
+    "reg":" Register",
+    "acc": "Already have an account?",
+    "login": "Login",
+    "now": "now",
+    "nameval": "minimum 8 symbols",
+    "loginval": "minimum 8 symbols",
+    "passwordval": "minimum 8 symbols, at least one letter, one capital letter, one digit, one special character"
+}
