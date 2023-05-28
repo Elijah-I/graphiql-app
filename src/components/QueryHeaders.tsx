@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Button } from "@mui/material";
 import './QueryHeaders.scss';
+import useLanguage from 'hooks/useLanguage';
 
 interface IQueryHeaders {
     vars: Array<[string, string]>;
@@ -7,26 +9,29 @@ interface IQueryHeaders {
 }
 
 function QueryHeaders({ vars, setvar }: IQueryHeaders) {
+    const locale = useLanguage('graphqli');
     const [isClosed, setCloled] = useState(false);
     return (
         <div style={{'height': isClosed ? '70px' : '100%'}} className="queryheaders">
             <div className="queryheaders__header">
-                <h3 className='queryheaders__name'>Headers</h3>
-                <button 
+                <h3 className='queryheaders__name'>{locale.heads}</h3>
+                <Button 
+                    variant="contained"
                     className='queryheaders__add' 
                     onClick={() => {
                         const newvars = [...vars, ["", ""]]
                         setvar([...vars, ["", ""]])
                     }}
                 >
-                    Add header
-                </button>
-                <button 
+                    {locale.addhead}
+                </Button>
+                <Button 
+                    variant="contained"
                     className='queryheaders__close'
                     onClick={() => {setCloled(!isClosed)}}
                 >
-                    {isClosed ? 'Open' : 'Close'}
-                </button>
+                    {isClosed ? locale.open : locale.close}
+                </Button>
             </div>
             <div style={{'display': isClosed ? "none" : "flex"}} className="queryheaders__main">
                 {

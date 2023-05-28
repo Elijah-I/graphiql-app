@@ -7,9 +7,11 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import './Graphiql.scss';
+import useLanguage from "hooks/useLanguage";
 
 const Graphiql = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const locale = useLanguage('graphqli');
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useLayoutEffect(() => {
     console.log(loading, user)
@@ -29,6 +31,7 @@ const Graphiql = () => {
     }
   }`);
   const [response, setResponse] = useState("");
+
   function fetchquery() {
     let headers = new Headers();
     heads.forEach((el) => {
@@ -55,17 +58,16 @@ const Graphiql = () => {
     })
     .then(res => res.json())
 	  .then(res => {
-      console.log(res.data);
       setResponse(JSON.stringify(res.data, null, 2));
     });
   }
   return (
-    <div className="queryElements">
+    <main className="queryElements">
       <QueryVariables vars={vars} setvar={setVariables}/>
       <QueryHeaders vars={heads} setvar={setHeaders} />
       <QueryEditor fetchquery={fetchquery} query={query} setQuery={setQuery} />
       <QueryResponse response={response}/>
-    </div>
+    </main>
   );
 };
 

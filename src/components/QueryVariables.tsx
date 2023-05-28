@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import { Button } from "@mui/material";
 import './QueryVariables.scss';
+import useLanguage from 'hooks/useLanguage';
 
 interface IQueryVariables {
     vars: Array<[string, string]>;
@@ -7,26 +9,29 @@ interface IQueryVariables {
 }
 
 function QueryVariables({ vars, setvar }: IQueryVariables) {
+    const locale = useLanguage('graphqli');
     const [isClosed, setCloled] = useState(false);
     return (
-        <div style={{'height': isClosed ? '70px' : '100%'}} className="queryvariables">
+        <section style={{'height': isClosed ? '70px' : '100%'}} className="queryvariables">
             <div className="queryvariables__header">
-                <h3 className='queryvariables__name'>Variables</h3>
-                <button 
+                <h3 className='queryvariables__name'>{locale.vars}</h3>
+                <Button 
+                    variant="contained"
                     className='queryvariables__add' 
                     onClick={() => {
                         const newvars = [...vars, ["", ""]]
                         setvar([...vars, ["", ""]])
                     }}
                 >
-                    Add variable
-                </button>
-                <button 
+                    {locale.addvar}
+                </Button>
+                <Button 
+                    variant="contained"
                     className='queryvariables__close'
                     onClick={() => {setCloled(!isClosed)}}
                 >
-                    {isClosed ? 'Open' : 'Close'}
-                </button>
+                    {isClosed ? locale.open : locale.close}
+                </Button>
             </div>
             <div style={{'display': isClosed ? "none" : "flex"}} className="queryvariables__main">
                 {
@@ -56,7 +61,7 @@ function QueryVariables({ vars, setvar }: IQueryVariables) {
                     ))
                 }
             </div>
-        </div>
+        </section>
     );
 }
 
