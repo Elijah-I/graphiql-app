@@ -11,7 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ROUTING } from "types/routing";
 import LangContext from "context/lang";
 
-import { Auth, Error, Graphiql, Main } from "pages";
+import { Auth, Docs, Error, Graphiql, Main } from "pages";
 import Layout from "layout/Layout";
 
 import "./index.scss";
@@ -37,6 +37,10 @@ const router = createBrowserRouter(
       <Route
         path={ROUTING.REGISTER}
         element={<Auth type='register'/>}
+      />
+      <Route
+        path={ROUTING.DOCS}
+        element={<Docs />}
       />
       <Route
         path="*"

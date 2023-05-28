@@ -10,7 +10,6 @@ import './Graphiql.scss';
 import useLanguage from "hooks/useLanguage";
 
 const Graphiql = () => {
-  const locale = useLanguage('graphqli');
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useLayoutEffect(() => {

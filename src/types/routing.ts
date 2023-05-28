@@ -3,4 +3,5 @@ export enum ROUTING {
   "LOGIN" = "/login",
   "GRAPHIQL" = "/graphiql",
   "REGISTER" = "/register",
+  "DOCS" = "/docs"
 }
