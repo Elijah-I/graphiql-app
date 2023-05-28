@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -48,11 +49,13 @@ function Login() {
           })}
         />
         {errors.password && <span>minimum 8 symbols, at least one letter, one digit, one special character</span>}
-        <button type="submit"
+        <Button 
+          variant="contained"
+          type="submit"
           className="login__btn"
         >
           Login
-        </button>
+        </Button>
         <div>
           Don't have an account? <Link style={{color: "blue"}}to="/register">Register</Link> now.
         </div>

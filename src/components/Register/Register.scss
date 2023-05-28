@@ -1,5 +1,5 @@
 .register {
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -7,6 +7,9 @@
   }
   .register__container {
     display: flex;
+    max-width: 400px;
+    min-width: 300px;
+    width: 50vw;
     flex-direction: column;
     text-align: center;
     background-color: #dcdcdc;

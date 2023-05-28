@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -38,12 +39,14 @@ function Register() {
           placeholder="Full Name"
           {...register("name", { required: true, minLength: 8})}
         />
+        {errors.name && <span>minimum 8 symbols</span>}
         <input
           type="email"
           className="register__textBox"
           placeholder="E-mail Address"
           {...register("email", { required: true, minLength: 8})}
         />
+        {errors.email && <span>minimum 8 symbols</span>}
         <input
           type="password"
           className="register__textBox"
@@ -54,9 +57,10 @@ function Register() {
             validate: (value: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(value)
           })}
         />
-        <button className="register__btn" type='submit'>
+        {errors.password && <span>minimum 8 symbols, at least one letter, one digit, one special character</span>}
+        <Button variant="contained" className="register__btn" type='submit'>
           Register
-        </button>
+        </Button>
         <div>
           Already have an account? <Link style={{color: "blue"}} to="/login">Login</Link> now.
         </div>
