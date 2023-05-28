@@ -16,7 +16,6 @@ function Register() {
   async function onSubmit(data: FieldValues) {
     try {
       if(isValid) {
-        console.log("valid")
       }
       await registerWithEmailAndPassword(data.name, data.email, data.password);
       navigate('/');
@@ -25,7 +24,6 @@ function Register() {
   }
   const navigate = useNavigate();
   useLayoutEffect(() => {
-    console.log(loading, user)
     if (!loading && user) {
       navigate('/')
       return;

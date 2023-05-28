@@ -11,9 +11,9 @@ import useLanguage from "hooks/useLanguage";
 
 const Graphiql = () => {
   const [user, loading] = useAuthState(auth);
+  const [succeedRes, setSucceedRes] = useState(false);
   const navigate = useNavigate();
   useLayoutEffect(() => {
-    console.log(loading, user)
     if (!loading && !user) {
       navigate('/')
       return;
@@ -68,15 +68,21 @@ const Graphiql = () => {
     })
     .then(res => res.json())
 	  .then(res => {
+      setSucceedRes(true);
       setResponse(JSON.stringify(res.data, null, 2));
-    });
+    })
+    .catch((err) => {
+      if(err instanceof Error) {
+        alert(err.message);
+      }
+    })
   }
   return (
     <main className="queryElements">
       <QueryVariables vars={vars} setvar={setVariables}/>
       <QueryHeaders vars={heads} setvar={setHeaders} />
       <QueryEditor fetchquery={fetchquery} query={query} setQuery={setQuery} />
-      <QueryResponse response={response}/>
+      <QueryResponse succ={succeedRes} response={response}/>
     </main>
   );
 };

@@ -4,7 +4,7 @@ import './QueryResponse.scss';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function QueryResponse({response} : {response: string}) {
+function QueryResponse({response, succ} : {response: string; succ: boolean}) {
     const locale = useLanguage('graphqli');
     const navigate = useNavigate();
     return (
@@ -14,7 +14,7 @@ function QueryResponse({response} : {response: string}) {
             <Button 
                 variant="contained" 
                 className="queryeditor__button"
-                onClick={() => navigate('/docs')}
+                onClick={() => succ ? navigate('/docs', { state: { prof: true } }) : null }
             >
                 {locale.docs}
             </Button>

@@ -16,14 +16,12 @@ function Login() {
   const locale = useLanguage("login");
   async function onSubmit(data: FieldValues) {
     try {
-      console.log(data)
       await logInWithEmailAndPassword(data.email, data.password);
       navigate('/');
     } catch {
     }
   }
   useLayoutEffect(() => {
-    console.log(loading, user)
     if (!loading && user) {
       navigate('/')
       return;

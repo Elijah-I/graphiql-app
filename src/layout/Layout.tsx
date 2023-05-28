@@ -16,7 +16,6 @@ const Layout = () => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       if(!checkToken()) {
-        console.log("expired token")
         logout();
         navigate('/');
       }

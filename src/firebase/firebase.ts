@@ -44,9 +44,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
       }
       await signInWithEmailAndPassword(auth, email, password);
       expiratiionTime = Date.parse((await auth.currentUser!.getIdTokenResult()).expirationTime);
-      console.log('login', )
     } catch (err) {
-      console.error(err);
       if(err instanceof Error) {
         alert(err.message);
       }
@@ -67,7 +65,6 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
       });
 
     } catch (err) {
-      console.error(err);
       if(err instanceof Error) {
         alert(err.message);
       }
@@ -79,7 +76,6 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
       await sendPasswordResetEmail(auth, email);
       alert("Password reset link sent!");
     } catch (err) {
-      console.error(err);
       alert((err as Error).message);
     }
   };
@@ -87,7 +83,6 @@ const registerWithEmailAndPassword = async (name: string, email: string, passwor
   const logout = () => {
     expiratiionTime = Infinity;
     signOut(auth);
-    console.log('logout')
   };
 
   export {
