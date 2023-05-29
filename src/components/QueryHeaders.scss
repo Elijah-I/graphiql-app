@@ -1,0 +1,46 @@
+.queryheaders {
+    display: flex;
+    overflow-y: auto;
+    border: 1px black solid;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 5px;
+    flex-direction: column;
+    &__header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px black solid;
+    }
+    &__name {
+        width: 60%;
+        max-height: 30px;
+        text-align: center;
+    }
+    &__add {
+        font-size: 0.8em !important;
+        height: 40px;
+    }
+
+    &__close {
+        font-size: 0.8em !important;
+        height: 40px;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.queryheader {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    &__name {
+        width: 47%;
+    }
+    &__value {
+        width: 47%;
+    }
+}
